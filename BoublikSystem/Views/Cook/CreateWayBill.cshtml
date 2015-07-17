@@ -1,0 +1,79 @@
+﻿@using BoublikSystem.Entities
+@model BoublikSystem.Models.WayBillModel
+
+@{
+    ViewBag.Title = "CreateWayBill";
+}
+
+@*<h2>CreateWayBill</h2>*@
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Список доступных товаров</h2>
+            <table class="table">
+                <tr>
+                    <th>
+                        Название продукта
+                    </th>
+                    <th>
+                        Цена (грн.)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model.Products)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Добавить", "AddProductToWayBill")
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Формирование накладной</h2>
+            <table class="table">
+                <tr>
+                    <th>
+                        Название продукта
+                    </th>
+                    <th>
+                        Цена (грн.)
+                    </th>
+                    <th>
+                        Количество
+                    </th>
+                </tr>
+            </table>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CreatedWayBill.SalesPointId, htmlAttributes: new { @class = "control-label col-md-6" })
+                        <div class="col-md-6">
+                            @Html.DropDownListFor(m => m.CreatedWayBill.SalesPointId, new SelectList(Model.Address, "Value", "Text"), "  Выберите адрес доставки  ", new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Отправить накладную" class="btn btn-default" />
+                </div>
+            }
+        </div>
+    </div>
+</div>

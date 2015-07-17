@@ -5,11 +5,9 @@ using System.Web;
 
 namespace BoublikSystem.Entities
 {
-    public class Product
+    public class SalePoint
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-        public string MeasurePoint { get; set; }
+        public string Adress { get; set; }
     }
 }

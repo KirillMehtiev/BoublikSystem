@@ -33,6 +33,9 @@ namespace BoublikSystem.Models
         }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<SalePoint> SalePoints { get; set; }
+        public DbSet<ProductToWayBill> ProductToWayBills { get; set; }
+        public DbSet<WayBill> WayBills { get; set; }
 
         //public System.Data.Entity.DbSet<BoublikSystem.Models.ApplicationUser> ApplicationUsers { get; set; }
     }

@@ -1,6 +1,7 @@
 
 
 using System.Collections.Generic;
+using BoublikSystem.Entities;
 using BoublikSystem.Models;
 
 namespace BoublikSystem.Migrations
@@ -52,7 +53,43 @@ namespace BoublikSystem.Migrations
                 userManager.AddToRole(users[1].Id, "cook");
                 userManager.AddToRole(users[2].Id, "seller");
 
-                
+
+                List<SalePoint> salePoints = new List<SalePoint>
+                {
+                    new SalePoint {Adress = "ТКР Украина"},
+                    new SalePoint {Adress = "Ак. Павлова"}
+                };
+
+                context.SalePoints.Add(salePoints[0]);//1
+                context.SalePoints.Add(salePoints[1]);//2
+                context.SaveChanges();
+
+                List<Product> products = new List<Product>
+                {
+                    new Product{ Name = "Бублик",MeasurePoint = "шт",Price = 5.00m},
+                    new Product{ Name = "Печенье",MeasurePoint = "кг",Price = 25.00m},
+                };
+
+                context.Products.AddRange(products);
+                context.SaveChanges();
+
+                List<WayBill> wayBills = new List<WayBill>
+                {
+                    new WayBill { SalesPointId = 1}
+                };
+
+                context.WayBills.AddRange(wayBills);
+                context.SaveChanges();
+
+                List<ProductToWayBill> productToWay = new List<ProductToWayBill>
+                {
+                    new ProductToWayBill { WayBillId = 1, ProductId = 1,Count = 20},
+                    new ProductToWayBill {WayBillId = 1,ProductId = 2,Count = 5}
+                };
+
+                context.ProductToWayBills.AddRange(productToWay);
+                context.SaveChanges();
+
             }
         }
     }

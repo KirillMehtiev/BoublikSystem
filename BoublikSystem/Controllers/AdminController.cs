@@ -56,7 +56,7 @@ namespace BoublikSystem.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //todo : начни отсюда
-            ApplicationUser applicationUser = manager.FindById(id);
+            ApplicationUser applicationUser = manager.FindByName(id);
             if (applicationUser == null)
             {
                 return HttpNotFound();
@@ -103,7 +103,7 @@ namespace BoublikSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicationUser applicationUser = manager.FindById(id);
+            ApplicationUser applicationUser = manager.FindByName(id);
             if (applicationUser == null)
             {
                 return HttpNotFound();
@@ -120,7 +120,7 @@ namespace BoublikSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser user = manager.FindById(applicationUser.Id);
+                ApplicationUser user = manager.FindByName(applicationUser.Id);
 
                 var hasher = new PasswordHasher();
 
@@ -140,7 +140,7 @@ namespace BoublikSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicationUser applicationUser = manager.FindById(id);
+            ApplicationUser applicationUser = manager.FindByName(id);
             if (applicationUser == null)
             {
                 return HttpNotFound();
@@ -153,7 +153,7 @@ namespace BoublikSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            ApplicationUser applicationUser = manager.FindById(id);
+            ApplicationUser applicationUser = manager.FindByName(id);
             manager.Delete(applicationUser);
             return RedirectToAction("CrudUser");
         }
