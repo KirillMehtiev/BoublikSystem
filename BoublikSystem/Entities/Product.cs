@@ -11,5 +11,6 @@ namespace BoublikSystem.Entities
         public string Name { get; set; }
         public decimal Price { get; set; }
         public string MeasurePoint { get; set; }
+        
     }
 }

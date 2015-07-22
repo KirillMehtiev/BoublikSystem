@@ -1,0 +1,13 @@
+﻿@using System;
+@model IDictionary<BoublikSystem.Entities.Product,double>
+
+@foreach ( var product in Model)
+{
+    <tr>
+
+        <td>@Html.DisplayFor(m => product.Key.Name)</td>
+        <td>@Html.DisplayFor(m => product.Key.Price)</td>
+        <td>@Html.DisplayFor(m =>product.Value) 
+ @Html.DisplayFor(m => product.Key.MeasurePoint)</td>
+    </tr>
+}
