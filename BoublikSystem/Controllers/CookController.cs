@@ -14,12 +14,13 @@ namespace BoublikSystem.Controllers
     public class CookController : Controller
     {
         ApplicationDbContext context = new ApplicationDbContext();
-
+         
         // GET: Cook
         public ActionResult Index()
         {
             return View();
         }
+       
 
         // GET: /cook/WayBill
         public ActionResult CreateWayBill()
@@ -45,17 +46,27 @@ namespace BoublikSystem.Controllers
             return View(wayBillModel);
         }
 
-        public ViewResult AddProductToWayBill(int idProduct)
+        private static List<Product> selectedItems = new List<Product>();
+        private static Dictionary<Product, double> selectedCountProducts = new Dictionary<Product, double>();
+        public ActionResult _AddProductToWayBill(int id, int count)
         {
-            return new ViewResult();
+
+            var data = context.Products.ToList();
+
+            selectedItems.Add(data[id-1]);
+            selectedCountProducts.Add(selectedItems[id - 1], count);
+
+            return PartialView(selectedCountProducts);
+
         }
+       
 
         // GET: /cook/ShowProducts
         public ActionResult ShowProducts()
         {
             return View();
         }
-
+        
         
 
         private List<SelectListItem> CreateAddresList(List<SalePoint> salesList)
