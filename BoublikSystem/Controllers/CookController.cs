@@ -46,6 +46,7 @@ namespace BoublikSystem.Controllers
             return View(wayBillModel);
         }
 
+
         private static List<Product> selectedItems = new List<Product>();
         private static Dictionary<Product, double> selectedCountProducts = new Dictionary<Product, double>();
         public ActionResult _AddProductToWayBill(int id, int count)

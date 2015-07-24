@@ -31,7 +31,7 @@ namespace BoublikSystem.Migrations
                 var userManager = new UserManager<ApplicationUser>(userStore);
 
                 var hasher = new PasswordHasher();
-
+                // Create users
                 var users = new List<ApplicationUser>
                 {
                     new ApplicationUser {UserName = "admin", PasswordHash = hasher.HashPassword("admin"), PhoneNumber = "096-37-99-604"},
@@ -45,15 +45,17 @@ namespace BoublikSystem.Migrations
                     userManager.Create(users[i]);
                 }
 
+                // Create roles
                 roleManager.Create(new IdentityRole("admin"));
                 roleManager.Create(new IdentityRole("cook"));
                 roleManager.Create(new IdentityRole("seller"));
 
+                // Set roles to users
                 userManager.AddToRole(users[0].Id, "admin");
                 userManager.AddToRole(users[1].Id, "cook");
                 userManager.AddToRole(users[2].Id, "seller");
 
-
+                // Create sales point
                 List<SalePoint> salePoints = new List<SalePoint>
                 {
                     new SalePoint {Adress = "ТКР Украина"},
@@ -64,6 +66,7 @@ namespace BoublikSystem.Migrations
                 context.SalePoints.Add(salePoints[1]);//2
                 context.SaveChanges();
 
+                // Create a list of products
                 List<Product> products = new List<Product>
                 {
                     new Product{ Name = "Бублик",MeasurePoint = "шт",Price = 5.00m},
@@ -73,6 +76,7 @@ namespace BoublikSystem.Migrations
                 context.Products.AddRange(products);
                 context.SaveChanges();
 
+                // Create a waybills
                 List<WayBill> wayBills = new List<WayBill>
                 {
                     new WayBill { SalesPointId = 1}
@@ -80,7 +84,8 @@ namespace BoublikSystem.Migrations
 
                 context.WayBills.AddRange(wayBills);
                 context.SaveChanges();
-
+                
+                // Create and test table in db
                 List<ProductToWayBill> productToWay = new List<ProductToWayBill>
                 {
                     new ProductToWayBill { WayBillId = 1, ProductId = 1,Count = 20},
