@@ -106,11 +106,11 @@ x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Security
 x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Security.Google.xml
 x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Security.Twitter.xml
 x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.csprojResolveAssemblyReference.cache
 x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.Migrations.InitialCreate.resources
 x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.csproj.GenerateResource.Cache
 x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.dll
 x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.pdb
+<<<<<<< HEAD
 C:\Users\Kirill\Documents\GitHub\BoublikSystem\BoublikSystem\bin\BoublikSystem.dll.config
 C:\Users\Kirill\Documents\GitHub\BoublikSystem\BoublikSystem\bin\BoublikSystem.dll
 C:\Users\Kirill\Documents\GitHub\BoublikSystem\BoublikSystem\bin\BoublikSystem.pdb
@@ -168,3 +168,6 @@ C:\Users\Kirill\Documents\GitHub\BoublikSystem\BoublikSystem\obj\Debug\BoublikSy
 C:\Users\Kirill\Documents\GitHub\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.csproj.GenerateResource.Cache
 C:\Users\Kirill\Documents\GitHub\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.dll
 C:\Users\Kirill\Documents\GitHub\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.pdb
+=======
+X:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.csprojResolveAssemblyReference.cache
+>>>>>>> a0ff18e64faec39bc5ca8434bd49418c4f9a3b11
