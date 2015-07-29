@@ -1,0 +1,38 @@
+﻿@using BoublikSystem.Entities
+@*model IDictionary<BoublikSystem.Entities.Product,BoublikSystem.Entities.ProductToWayBill>*@
+@*model IEnumerable<BoublikSystem.Entities.ProductToWayBill>*@
+@model int
+<div class="modal-content">
+    <div class="modal-header">
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+
+                <p>Название модели: </p>
+                @*<div class="form-group">
+                    <label for="countField">Введите сюда количество кг/шт: </label>
+                    <input type="text" class="form-control" id="countField">
+                </div>
+                *@
+
+              @using (Ajax.BeginForm("_AddProductToWayBill", "Cook", new {id = Model }, new AjaxOptions() {}))
+              {
+                 
+                  <label for="countfld">Введите сюда количество кг/шт: for id = @Model</label>
+                <input type="text" class="form-control" id="countfld" name="countField" value="">
+                <input type="submit" value="Apply" />
+                }
+
+
+             @* @Html.ActionLink("Добавить", "_MW_SelectCount", new {id = 2, count = 5}, new {@class = "btn btn-default"}
+                  )*@
+                 
+
+
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+              </div>
+            </div>
+    </div>
+

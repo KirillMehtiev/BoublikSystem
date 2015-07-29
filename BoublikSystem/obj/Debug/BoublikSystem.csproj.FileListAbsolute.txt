@@ -106,8 +106,8 @@ x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Security
 x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Security.Google.xml
 x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Security.Twitter.xml
 x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.csprojResolveAssemblyReference.cache
 x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.Migrations.InitialCreate.resources
 x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.csproj.GenerateResource.Cache
 x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.dll
 x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.pdb
+X:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.csprojResolveAssemblyReference.cache

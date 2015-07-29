@@ -13,6 +13,11 @@
 
 @*<h2>CreateWayBill</h2>
 *@
+<button id="modal-opener">Open Dialog</button>
+
+<div id="dialog-modal" title="Basic modal dialog">
+    <p>This is a test modal popup</p>
+</div>
 
 <div class="container">
     <div class="row">
@@ -34,9 +39,12 @@
                         </td>
                         <td>@Html.DisplayFor(modelItem => item.Price)
                         </td>
-                        <td>@Ajax.ActionLink("Добавить", "_AddProductToWayBill", new{id = item.Id,count = 4}, new AjaxOptions {
-                                UpdateTargetId = "selectedProducts"
-                })
+                        <td>
+                            <div>
+                                @Html.ActionLink("Добавить", "_MW_SelectCount", 
+                new { id = item.Id,wayBillId = Model.CreatedWayBill.Id}, new { @class = "compItem" })
+
+                            </div>
                         </td>
                     </tr>
                 }
@@ -56,7 +64,7 @@
                     <th>Количество
                     </th>
                     <tbody id="selectedProducts">
-                      
+
                     </tbody>
                 </tr>
             </table>
@@ -68,9 +76,9 @@
                 <div class="form-horizontal">
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.CreatedWayBill.SalesPointId, htmlAttributes: new { @class = "control-label col-md-6" })
+                        @Html.LabelFor(model => model.CreatedWayBill.SalesPointId, htmlAttributes: new {@class = "control-label col-md-6"})
                         <div class="col-md-6">
-                            @Html.DropDownListFor(m => m.CreatedWayBill.SalesPointId, new SelectList(Model.Address, "Value", "Text"), "  Выберите адрес доставки  ", new { @class = "form-control" })
+                            @Html.DropDownListFor(m => m.CreatedWayBill.SalesPointId, new SelectList(Model.Address, "Value", "Text"), "  Выберите адрес доставки  ", new {@class = "form-control"})
                         </div>
                     </div>
                 </div>
@@ -80,10 +88,56 @@
             }
         </div>
     </div>
+    <h3>Список моделей</h3>
+    <div id="modDialog" class="modal fade">
+        <div id="dialogContent" class="modal-dialog"></div>
+    </div>
+    <ul>
+
+        <li>@*@Ajax.ActionLink("somename", "_MW_SelectCount", 
+                new { id = 1 },new AjaxOptions(){HttpMethod = "GET"})*@
+
+        </li>
+        <li>
+           
+        </li>
+
+    </ul>
+
+
 </div>
 
 @section scripts
 {
     @*Ненавязивый JavaScript для выполнения запроса на сервер без полного обновления страницы*@
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+        $.ajaxSetup({ cache: false });
+        $(".compItem").click(function (e) {
+
+            e.preventDefault();
+            $.get(this.href, function (data) {
+                $('#dialogContent').html(data);
+                $('#modDialog').modal('show');
+            });
+        });
+    })
+</script>
 }
+@*@Ajax.ActionLink("Добавить", "_AddProductToWayBill", new {id = item.Id, count = 4}, new AjaxOptions
+                            {
+                                UpdateTargetId = "selectedProducts"
+                            })*@
+@*@Ajax.ActionLink("Добавить", "_MW_SelectCount", new {id = item.Id}, new AjaxOptions()
+                                {
+                                    HttpMethod = "POST"
+                                }, new {@class = "btn btn-default"}
+                                    )*@
+  @*@using (Html.BeginForm("About", "Home")) {
+
+    <input type="submit" value="About" />
+
+ } *@
