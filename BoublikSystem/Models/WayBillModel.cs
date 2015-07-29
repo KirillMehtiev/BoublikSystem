@@ -12,5 +12,6 @@ namespace BoublikSystem.Models
         public IEnumerable<Product> Products { get; set; }
         public WayBill CreatedWayBill { get; set; }
         public IEnumerable<SelectListItem> Address { get; set; }
+        public IEnumerable<ProductToWayBill> ProductToWayBills  { get; set; }
     }
 }
