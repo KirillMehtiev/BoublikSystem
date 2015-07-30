@@ -3,7 +3,7 @@
 
 @{
     ViewBag.Title = "CreateWayBill";
-   
+    ViewBag.TargetId = "selectedProducts";
     var options = new AjaxOptions()
     {
         UpdateTargetId = "selectedProducts",
@@ -44,6 +44,16 @@
                                 @Html.ActionLink("Добавить", "_MW_SelectCount", 
                 new { id = item.Id,wayBillId = Model.CreatedWayBill.Id}, new { @class = "compItem" })
 
+
+                 @*using (Html.BeginForm("_MW_SelectCount", "Cook", new {id = item.Id,wayBillId = Model.CreatedWayBill.Id,
+                                     @class = "compItem" }
+                                 ))
+              {
+                 
+                  
+                <input type="submit" value="Добавить" />
+                                }
+*@
                             </div>
                         </td>
                     </tr>
@@ -64,7 +74,6 @@
                     <th>Количество
                     </th>
                     <tbody id="selectedProducts">
-
                     </tbody>
                 </tr>
             </table>
@@ -98,9 +107,7 @@
                 new { id = 1 },new AjaxOptions(){HttpMethod = "GET"})*@
 
         </li>
-        <li>
-           
-        </li>
+        <li></li>
 
     </ul>
 
@@ -140,4 +147,4 @@
 
     <input type="submit" value="About" />
 
- } *@
+} *@

@@ -1,4 +1,5 @@
-﻿@using BoublikSystem.Entities
+﻿@using System.Activities.Validation
+@using BoublikSystem.Entities
 @*model IDictionary<BoublikSystem.Entities.Product,BoublikSystem.Entities.ProductToWayBill>*@
 @*model IEnumerable<BoublikSystem.Entities.ProductToWayBill>*@
 @model int
@@ -15,19 +16,18 @@
                 </div>
                 *@
 
-              @using (Ajax.BeginForm("_AddProductToWayBill", "Cook", new {id = Model }, new AjaxOptions() {}))
+              @using (Ajax.BeginForm("_AddProductToWayBill", "Cook", new {id = Model }, new AjaxOptions() { UpdateTargetId = "selectedProducts"}))
               {
                  
                   <label for="countfld">Введите сюда количество кг/шт: for id = @Model</label>
                 <input type="text" class="form-control" id="countfld" name="countField" value="">
-                <input type="submit" value="Apply" />
+                <input type="submit" value="Apply" id ="submitId"name="submitBtn" />
                 }
 
 
              @* @Html.ActionLink("Добавить", "_MW_SelectCount", new {id = 2, count = 5}, new {@class = "btn btn-default"}
                   )*@
                  
-
 
               <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -36,3 +36,16 @@
             </div>
     </div>
 
+<script language="Javascript" type="text/javascript">
+    function returnname() {
+        $("submitBtn").click(function (e) {
+
+            window.opener.document.getElementById('selectedProducts').value = "sometext";
+            window.opener.focus();
+            window.close();
+
+        });
+
+    }
+
+</script> 

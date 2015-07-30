@@ -23,6 +23,7 @@ namespace BoublikSystem.Controllers
 
 
         // GET: /cook/WayBill
+        [HttpGet]
         public ActionResult CreateWayBill()
         {
             WayBill wayBill = new WayBill { SalesPointId = 364 };
@@ -46,6 +47,7 @@ namespace BoublikSystem.Controllers
             return View(wayBillModel);
         }
 
+       
         private static List<Product> selectedItems = new List<Product>();
         //private static Dictionary<Product, Product_Data> selectedCountProducts = new Dictionary<Product, Product_Data>();
         private static List<ProductToWayBill> productToWayBill = new List<ProductToWayBill>();
@@ -59,8 +61,7 @@ namespace BoublikSystem.Controllers
              data = context.Products.ToList();
             try
             {
-               
-                foreach (var item in _billsList_view)
+               foreach (var item in _billsList_view)
                 {
                     if (item.Key.Id==id)
                     {
@@ -84,19 +85,12 @@ namespace BoublikSystem.Controllers
         public ActionResult _MW_SelectCount(int id, int wayBillId)//ProductToWayBill product_ToWay_Bill )
         {
 
-            //_AddProductToWayBill(id,count)
+         
              data = context.Products.ToList();
-            var waybills = context.WayBills.Find(wayBillId);
-
-            // selectedItems.Add(data[id - 1]);//1 1
-
-            //selectedCountProducts.Add(selectedItems[id - 1], _count); 
-
-            //productToWayBill.Add(new ProductToWayBill() { Count = 111, ProductId = id, WayBillId = wayBillId });
+          
             _billsList_view.Add(data[id - 1], new ProductToWayBill() { ProductId = id});
 
-            _billsList_viewByID.Add(id - 1, _billsList_view[data[id - 1]]);
-            return PartialView(id /*productToWayBill*/);
+            return PartialView(id);
             //TODO: waybillid должно обьявляться только после нажатия кнопки "отправить"
         }
 
