@@ -46,7 +46,6 @@ namespace BoublikSystem.Models
         public string Email { get; set; }
     }
 
-    // We use only this Model for log in
     public class LoginViewModel
     {
         //[Required]

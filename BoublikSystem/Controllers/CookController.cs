@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -13,7 +14,17 @@ namespace BoublikSystem.Controllers
     [Authorize(Roles = "admin, cook")]
     public class CookController : Controller
     {
-        ApplicationDbContext context = new ApplicationDbContext();
+        private static ApplicationDbContext context = new ApplicationDbContext();// БД
+        private static List<Product> products; // список всей продукции
+        private static List<SelectListItem> adrressList;
+        private static Dictionary<Product, double> _billsList_view = new Dictionary<Product, double>(); // дабавлены продукты в накладную
+
+        public CookController()
+        {
+            products = context.Products.ToList();
+            adrressList = CreateAddresList(context.SalePoints.ToList());
+
+        }
 
         // GET: Cook
         public ActionResult Index()
@@ -25,79 +36,81 @@ namespace BoublikSystem.Controllers
         // GET: /cook/WayBill
         public ActionResult CreateWayBill()
         {
-            WayBill wayBill = new WayBill { SalesPointId = 364 };
-            List<Product> products = context.Products.ToList();
-            List<SelectListItem> adrressList = CreateAddresList(context.SalePoints.ToList());
+            
 
-            context.WayBills.Add(wayBill);
-
-            // Добавляем бил в дб что-бы получить ид для била
-            if (context.WayBills.Any(w => w.SalesPointId == 364))
-                wayBill = context.WayBills.First(w => w.SalesPointId == 364);
-
-            WayBillModel wayBillModel = new WayBillModel
-            {
-                CreatedWayBill = wayBill,
-                Products = products,
-                Address = adrressList
-            };
-
-
-            return View(wayBillModel);
+            return View(GetWayBillModel());
         }
 
-
-        private static List<Product> selectedItems = new List<Product>();
-        //private static Dictionary<Product, Product_Data> selectedCountProducts = new Dictionary<Product, Product_Data>();
-        private static List<ProductToWayBill> productToWayBill = new List<ProductToWayBill>();
-        private static Dictionary<Product, ProductToWayBill> _billsList_view = new Dictionary<Product, ProductToWayBill>();
-        static List<ProductToWayBill> prod = new List<ProductToWayBill>();
-        //--
-        private static Dictionary<int, ProductToWayBill> _billsList_viewByID = new Dictionary<int, ProductToWayBill>();
-        public ActionResult _AddProductToWayBill(int id, int count = -1)
+        [HttpPost]
+        public ActionResult CreateWayBill(WayBillModel wayBillModel)
         {
-            count = Convert.ToInt32(Request["countField"]);
-             data = context.Products.ToList();
-            try
+            if ((_billsList_view.Count > 0) && (wayBillModel.SelectedAdress != null))
             {
-               
+                // todo: add to bd and clean list
+                
+
+                // Что бы получить id для WayBill нужно его добавить в ДБ, затем считать
+                int idSelectedAdress = Convert.ToInt32(wayBillModel.SelectedAdress);
+                int futureId = 0;
+                WayBill wayBill = new WayBill { SalesPointId = idSelectedAdress };
+                context.WayBills.Add(wayBill);
+                context.SaveChanges();
+                
                 foreach (var item in _billsList_view)
                 {
-                    if (item.Key.Id==id)
+                    ProductToWayBill productToWayBill = new ProductToWayBill
                     {
-                        _billsList_view[item.Key].Count = count;
-                    }
-                  
+                        Count = item.Value,
+                        ProductId = item.Key.Id,
+                        WayBillId = wayBill.Id
+                    };
+
+                    context.ProductToWayBills.Add(productToWayBill);
                 }
+
+                context.SaveChanges();
+
+                _billsList_view.Clear();
+
                 
-               // _billsList_view[data[0]].Count = count;
-            
             }
-            catch (Exception ex)
+            else
             {
-                ex.ToString();
+                // todo: make some validation msg
             }
+
+
+            return View(GetWayBillModel());
+
+        }
+
+        public ActionResult _AddProductToWayBill(int id, double count = -1)
+        {
+            string checkForPoint;
+
+            checkForPoint = Request["countField"].ToString().Replace(".", ",");
+
+            count = Convert.ToDouble(checkForPoint);
+
+            var recivedProduct = context.Products.Find(id);
+
+            if ((_billsList_view.Count > 0) && (_billsList_view.ContainsKey(recivedProduct)))
+            {
+                _billsList_view[recivedProduct] += count;
+            }
+            else
+            {
+                _billsList_view.Add(recivedProduct, count);
+            }
+
             return PartialView(_billsList_view);
 
         }
 
-        private static List<Product> data = new List<Product>();
-        public ActionResult _MW_SelectCount(int id, int wayBillId)//ProductToWayBill product_ToWay_Bill )
+
+        public ActionResult _MW_SelectCount(int id)
         {
-
-            //_AddProductToWayBill(id,count)
-             data = context.Products.ToList();
-            var waybills = context.WayBills.Find(wayBillId);
-
-            // selectedItems.Add(data[id - 1]);//1 1
-
-            //selectedCountProducts.Add(selectedItems[id - 1], _count); 
-
-            //productToWayBill.Add(new ProductToWayBill() { Count = 111, ProductId = id, WayBillId = wayBillId });
-            _billsList_view.Add(data[id - 1], new ProductToWayBill() { ProductId = id});
-
-            _billsList_viewByID.Add(id - 1, _billsList_view[data[id - 1]]);
-            return PartialView(id /*productToWayBill*/);
+            return PartialView(id);
             //TODO: waybillid должно обьявляться только после нажатия кнопки "отправить"
         }
 
@@ -126,6 +139,17 @@ namespace BoublikSystem.Controllers
             }
 
             return answer;
+        }
+
+        private WayBillModel GetWayBillModel()
+        {
+            WayBillModel wayBillModel = new WayBillModel
+            {
+                Products = products,
+                Address = adrressList
+            };
+
+            return wayBillModel;
         }
     }
 }

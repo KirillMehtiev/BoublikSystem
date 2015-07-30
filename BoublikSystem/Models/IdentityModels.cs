@@ -18,7 +18,6 @@ namespace BoublikSystem.Models
             // Add custom user claims here
             return userIdentity;
         }
-
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -33,8 +32,6 @@ namespace BoublikSystem.Models
             return new ApplicationDbContext();
         }
 
-
-        // If you want to create a nuw table in db put it here
         public DbSet<Product> Products { get; set; }
         public DbSet<SalePoint> SalePoints { get; set; }
         public DbSet<ProductToWayBill> ProductToWayBills { get; set; }

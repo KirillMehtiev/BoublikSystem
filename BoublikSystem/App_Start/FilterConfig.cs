@@ -7,7 +7,7 @@ namespace BoublikSystem
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new AuthorizeAttribute()); // Для того что бы все страници требовали авторизации
+            filters.Add(new AuthorizeAttribute());
             filters.Add(new HandleErrorAttribute());
         }
     }
