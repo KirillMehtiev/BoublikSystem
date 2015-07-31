@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using BoublikSystem.Entities;
 using BoublikSystem.Models;
+using WebGrease.Css.Extensions;
 
 namespace BoublikSystem.Migrations
 {
@@ -23,6 +24,7 @@ namespace BoublikSystem.Migrations
 
         protected override void Seed(BoublikSystem.Models.ApplicationDbContext context)
         {
+
             if (!context.Users.Any(u => u.UserName == "admin"))
             {
                 var roleStore = new RoleStore<IdentityRole>(context);
@@ -89,6 +91,8 @@ namespace BoublikSystem.Migrations
 
                 context.ProductToWayBills.AddRange(productToWay);
                 context.SaveChanges();
+
+                
 
             }
         }

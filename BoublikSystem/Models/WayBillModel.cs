@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,8 +11,8 @@ namespace BoublikSystem.Models
     public class WayBillModel
     {
         public IEnumerable<Product> Products { get; set; }
-        public WayBill CreatedWayBill { get; set; }
         public IEnumerable<SelectListItem> Address { get; set; }
-        public IEnumerable<ProductToWayBill> ProductToWayBills  { get; set; }
+        [Required]
+        public string SelectedAdress { get; set; }
     }
 }

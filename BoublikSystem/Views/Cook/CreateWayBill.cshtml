@@ -3,7 +3,7 @@
 
 @{
     ViewBag.Title = "CreateWayBill";
-    ViewBag.TargetId = "selectedProducts";
+
     var options = new AjaxOptions()
     {
         UpdateTargetId = "selectedProducts",
@@ -11,23 +11,17 @@
     };
 }
 
-@*<h2>CreateWayBill</h2>
-*@
-<button id="modal-opener">Open Dialog</button>
-
-<div id="dialog-modal" title="Basic modal dialog">
-    <p>This is a test modal popup</p>
-</div>
-
 <div class="container">
     <div class="row">
         <div class="col-md-6">
             <h2>Список доступных товаров</h2>
             <table class="table">
                 <tr>
-                    <th>Название продукта
+                    <th>
+                        Название продукта
                     </th>
-                    <th>Цена (грн.)
+                    <th>
+                        Цена (грн.)
                     </th>
                     <th></th>
                 </tr>
@@ -35,25 +29,17 @@
                 @foreach (var item in Model.Products)
                 {
                     <tr>
-                        <td>@Html.DisplayFor(modelItem => item.Name)
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
                         </td>
-                        <td>@Html.DisplayFor(modelItem => item.Price)
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
                         </td>
                         <td>
                             <div>
-                                @Html.ActionLink("Добавить", "_MW_SelectCount", 
-                new { id = item.Id,wayBillId = Model.CreatedWayBill.Id}, new { @class = "compItem" })
+                                @Html.ActionLink("Добавить", "_MW_SelectCount",
+                new { id = item.Id }, new { @class = "compItem" })
 
-
-                 @*using (Html.BeginForm("_MW_SelectCount", "Cook", new {id = item.Id,wayBillId = Model.CreatedWayBill.Id,
-                                     @class = "compItem" }
-                                 ))
-              {
-                 
-                  
-                <input type="submit" value="Добавить" />
-                                }
-*@
                             </div>
                         </td>
                     </tr>
@@ -67,14 +53,16 @@
             <h2>Формирование накладной</h2>
             <table class="table">
                 <tr>
-                    <th>Название продукта
+                    <th>
+                        Название продукта
                     </th>
-                    <th>Цена (грн.)
+                    <th>
+                        Цена (грн.)
                     </th>
-                    <th>Количество
+                    <th>
+                        Количество
                     </th>
-                    <tbody id="selectedProducts">
-                    </tbody>
+                <tbody id="selectedProducts"></tbody>
                 </tr>
             </table>
 
@@ -83,41 +71,23 @@
                 @Html.AntiForgeryToken()
 
                 <div class="form-horizontal">
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.CreatedWayBill.SalesPointId, htmlAttributes: new {@class = "control-label col-md-6"})
-                        <div class="col-md-6">
-                            @Html.DropDownListFor(m => m.CreatedWayBill.SalesPointId, new SelectList(Model.Address, "Value", "Text"), "  Выберите адрес доставки  ", new {@class = "form-control"})
-                        </div>
+                    <div class="col-md-6">
+                        @Html.DropDownListFor(m => m.SelectedAdress, new SelectList(Model.Address, "Value", "Text"), "Выберите адрес доставки", new { @class = "form-control" })
                     </div>
                 </div>
-            <div class="form-group">
-                <input type="submit" value="Отправить накладную" class="btn btn-default" />
-            </div>
+                <div class="form-group">
+                    <input type="submit" value="Отправить накладную" class="btn btn-default" />
+                </div>
             }
         </div>
     </div>
-    <h3>Список моделей</h3>
     <div id="modDialog" class="modal fade">
         <div id="dialogContent" class="modal-dialog"></div>
     </div>
-    <ul>
-
-        <li>@*@Ajax.ActionLink("somename", "_MW_SelectCount", 
-                new { id = 1 },new AjaxOptions(){HttpMethod = "GET"})*@
-
-        </li>
-        <li></li>
-
-    </ul>
-
-
 </div>
 
-@section scripts
-{
-    @*Ненавязивый JavaScript для выполнения запроса на сервер без полного обновления страницы*@
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+@*Ненавязивый JavaScript для выполнения запроса на сервер без полного обновления страницы*@
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 
 <script type="text/javascript">
 
@@ -131,20 +101,7 @@
                 $('#modDialog').modal('show');
             });
         });
-    })
+
+    });
 </script>
-}
-@*@Ajax.ActionLink("Добавить", "_AddProductToWayBill", new {id = item.Id, count = 4}, new AjaxOptions
-                            {
-                                UpdateTargetId = "selectedProducts"
-                            })*@
-@*@Ajax.ActionLink("Добавить", "_MW_SelectCount", new {id = item.Id}, new AjaxOptions()
-                                {
-                                    HttpMethod = "POST"
-                                }, new {@class = "btn btn-default"}
-                                    )*@
-  @*@using (Html.BeginForm("About", "Home")) {
 
-    <input type="submit" value="About" />
-
-} *@
