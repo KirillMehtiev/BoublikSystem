@@ -29,6 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -164,16 +165,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SaleController.cs" />
+    <Compile Include="Entities\Bill.cs" />
     <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\ProductToBill.cs" />
     <Compile Include="Entities\ProductToWayBill.cs" />
     <Compile Include="Entities\SalePoint.cs" />
     <Compile Include="Entities\WayBill.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201507151702014_InitialCreate.cs" />
-    <Compile Include="Migrations\201507151702014_InitialCreate.Designer.cs">
-      <DependentUpon>201507151702014_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -243,6 +242,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jsForDialog.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -296,6 +296,11 @@
     <Content Include="Views\Cook\CreateWayBill.cshtml" />
     <Content Include="Views\Cook\_AddProductToWayBill.cshtml" />
     <Content Include="Views\Cook\_MW_SelectCount.cshtml" />
+    <Content Include="Views\Sale\CreateBill.cshtml" />
+    <Content Include="Views\Sale\AskForCount.cshtml" />
+    <Content Include="Views\Sale\AddProductToBill.cshtml" />
+    <Content Include="Views\Sale\_RecivedProducts.cshtml" />
+    <Content Include="Views\Sale\_ChangeCountProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -306,11 +311,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201507151702014_InitialCreate.resx">
-      <DependentUpon>201507151702014_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -17,7 +17,7 @@ namespace BoublikSystem.Controllers
         private static ApplicationDbContext context = new ApplicationDbContext();// БД
         private static List<Product> products; // список всей продукции
         private static List<SelectListItem> adrressList;
-        private static Dictionary<Product, double> _billsList_view = new Dictionary<Product, double>(); // дабавлены продукты в накладную
+        private static Dictionary<Product, double> _billsList_view = new Dictionary<Product, double>(); // дабавленые продукты в накладную
 
         public CookController()
         {

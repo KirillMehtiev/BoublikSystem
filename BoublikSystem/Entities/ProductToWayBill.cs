@@ -11,5 +11,8 @@ namespace BoublikSystem.Entities
         public int ProductId { get; set; }
         public int WayBillId { get; set; }
         public double Count { get; set; }
+
+        public virtual Product Product { get; set; }
+        public virtual WayBill WayBill { get; set; }
     }
 }

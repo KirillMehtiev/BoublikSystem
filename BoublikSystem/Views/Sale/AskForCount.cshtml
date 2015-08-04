@@ -1,0 +1,17 @@
+﻿@model int
+
+<div class="modal-content">
+    <div class="modal-body">
+        <h3>Введите необходимое количество</h3>
+        
+        @using (Ajax.BeginForm("AddProductToBill", "Sale", new { productId = Model }, new AjaxOptions() { UpdateTargetId = "selectedProducts" }))
+        {
+            <input type="hidden" value="@Model" id="hiddenId"/>
+            <input type="text" class="form-control" id="countId" name="countField" value="">
+            <input type="submit" id="applyId" value="Отправить" />
+        }
+
+    </div>
+</div>
+
+<script src="~/Scripts/jsForDialog.js"></script>

@@ -220,8 +220,6 @@ C:\Users\Kirill\Documents\GitHub\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.
 C:\Users\Kirill\Documents\GitHub\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Kirill\Documents\GitHub\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Kirill\Documents\GitHub\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Kirill\Documents\GitHub\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.Migrations.InitialCreate.resources
-C:\Users\Kirill\Documents\GitHub\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.csproj.GenerateResource.Cache
 C:\Users\Kirill\Documents\GitHub\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.dll
 C:\Users\Kirill\Documents\GitHub\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.pdb
 C:\Users\Kirill\Documents\GitHub\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.csprojResolveAssemblyReference.cache

@@ -1,49 +1,15 @@
-﻿@model BoublikSystem.Models.WayBillModel
+﻿@model IDictionary<BoublikSystem.Entities.Product, double>
 
 @{
-    ViewBag.Title = "CreateWayBill";
+    ViewBag.Title = "CreateBill";
 }
+
 
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <h2>Список доступных товаров</h2>
-            <table class="table">
-                <tr>
-                    <th>
-                        Название продукта
-                    </th>
-                    <th>
-                        Цена (грн.)
-                    </th>
-                    <th></th>
-                </tr>
+            <h2>Список полученных товаров</h2>
 
-                @foreach (var item in Model.Products)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Price)
-                        </td>
-                        <td>
-                            <div>
-                                @Html.ActionLink("Добавить", "_MW_SelectCount",
-                new { id = item.Id }, new { @class = "compItem" })
-
-                            </div>
-                        </td>
-                    </tr>
-                }
-
-            </table>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <h2>Формирование накладной</h2>
             <table class="table">
                 <tr>
                     <th>
@@ -55,32 +21,50 @@
                     <th>
                         Количество
                     </th>
+                    <th>
+                    </th>
+                </tr>
+
+                <tbody id="selectedProducts2">
+                    @{ Html.RenderPartial("_RecivedProducts", Model); }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Формирования чека</h2>
+            <table class="table">
+                <tr>
+                    <th>
+                        Название продукта
+                    </th>
+                    <th>
+                        Цена (грн.)
+                    </th>
+                    <th>
+                        Количество
+                    </th>
+                    <th>
+                    </th>
+
                 </tr>
                 <tbody id="selectedProducts"></tbody>
             </table>
 
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
-
-                <div class="form-horizontal">
-                    <div class="col-md-6 pull-left">
-                        @Html.DropDownListFor(m => m.SelectedAdress, new SelectList(Model.Address, "Value", "Text"), "Выберите адрес доставки", new { @class = "form-control" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Отправить накладную" class="btn btn-default pull-right" />
-                </div>
-            }
         </div>
     </div>
     <div id="modDialog" class="modal fade">
         <div id="dialogContent" class="modal-dialog"></div>
     </div>
+
 </div>
+
+
 
 @*Ненавязивый JavaScript для выполнения запроса на сервер без полного обновления страницы*@
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
 
 <script type="text/javascript">
 
@@ -96,6 +80,5 @@
         });
 
     });
-
 
 </script>
