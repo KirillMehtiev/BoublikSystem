@@ -1,7 +1,14 @@
-﻿@model BoublikSystem.Models.WayBillModel
+﻿@using BoublikSystem.Entities
+@model BoublikSystem.Models.WayBillModel
 
 @{
     ViewBag.Title = "CreateWayBill";
+
+    var options = new AjaxOptions()
+    {
+        UpdateTargetId = "selectedProducts",
+        Url = Url.Action("_AddProductToWayBill")
+    };
 }
 
 <div class="container">
@@ -55,8 +62,8 @@
                     <th>
                         Количество
                     </th>
-                </tr>
                 <tbody id="selectedProducts"></tbody>
+                </tr>
             </table>
 
             @using (Html.BeginForm())
@@ -64,12 +71,12 @@
                 @Html.AntiForgeryToken()
 
                 <div class="form-horizontal">
-                    <div class="col-md-6 pull-left">
+                    <div class="col-md-6">
                         @Html.DropDownListFor(m => m.SelectedAdress, new SelectList(Model.Address, "Value", "Text"), "Выберите адрес доставки", new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Отправить накладную" class="btn btn-default pull-right" />
+                    <input type="submit" value="Отправить накладную" class="btn btn-default" />
                 </div>
             }
         </div>

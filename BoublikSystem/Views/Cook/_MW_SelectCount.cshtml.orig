@@ -1,25 +1,13 @@
-<<<<<<< HEAD
-﻿@model int
-
-=======
 ﻿@using System.Activities.Validation
 @using BoublikSystem.Entities
 @*model IDictionary<BoublikSystem.Entities.Product,BoublikSystem.Entities.ProductToWayBill>*@
 @*model IEnumerable<BoublikSystem.Entities.ProductToWayBill>*@
 @model int
->>>>>>> c5401f725964dc6a8289cdadc9d096126bf479c8
 <div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">Modal Header</h4>
+    </div>
     <div class="modal-body">
-<<<<<<< HEAD
-        <h3>Введите необходимое количество</h3>
-
-        @using (Ajax.BeginForm("_AddProductToWayBill", "Cook", new { id = Model }, new AjaxOptions() { UpdateTargetId = "selectedProducts" }))
-        {
-            <input type="text" class="form-control" id="countld" name="countField" value="">
-            <input type="submit" id="applyId" value="Apply"  />
-        }
-
-=======
         <p>Название модели: </p>
       
         @using (Ajax.BeginForm("_AddProductToWayBill", "Cook", new { id = Model }, new AjaxOptions() { UpdateTargetId = "selectedProducts" }))
@@ -32,7 +20,6 @@
         }
 
        </div>
->>>>>>> c5401f725964dc6a8289cdadc9d096126bf479c8
     </div>
 <script type="text/javascript">
     $(function() {

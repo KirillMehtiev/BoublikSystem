@@ -1,60 +1,3 @@
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\BoublikSystem.dll.config
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\BoublikSystem.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\BoublikSystem.pdb
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Antlr3.Runtime.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\EntityFramework.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\EntityFramework.SqlServer.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Microsoft.AspNet.Identity.Core.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Microsoft.AspNet.Identity.EntityFramework.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Microsoft.AspNet.Identity.Owin.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Host.SystemWeb.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Security.Cookies.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Security.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Security.Facebook.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Security.Google.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Security.OAuth.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Security.Twitter.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Microsoft.Web.Infrastructure.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Newtonsoft.Json.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Owin.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\System.Web.Helpers.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\System.Web.Mvc.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\System.Web.Optimization.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\System.Web.Razor.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\System.Web.WebPages.Deployment.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\System.Web.WebPages.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\System.Web.WebPages.Razor.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\WebGrease.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\System.Web.Helpers.xml
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\System.Web.Mvc.xml
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\System.Web.Optimization.xml
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\System.Web.Razor.xml
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\System.Web.WebPages.xml
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\System.Web.WebPages.Deployment.xml
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\System.Web.WebPages.Razor.xml
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Antlr3.Runtime.pdb
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Newtonsoft.Json.xml
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\EntityFramework.xml
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\EntityFramework.SqlServer.xml
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Microsoft.AspNet.Identity.Core.xml
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Microsoft.AspNet.Identity.Owin.xml
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.xml
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Host.SystemWeb.xml
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Security.xml
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Security.Facebook.xml
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Security.Cookies.xml
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Security.OAuth.xml
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Security.Google.xml
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Security.Twitter.xml
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.csprojResolveAssemblyReference.cache
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.dll
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.pdb
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.Migrations.InitialCreate.resources
-C:\Users\Kirill\Documents\Visual Studio 2013\Projects\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.csproj.GenerateResource.Cache
 x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\bin\BoublikSystem.dll
 x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\bin\BoublikSystem.pdb
 x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\bin\Antlr3.Runtime.dll
@@ -110,6 +53,7 @@ x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.Mig
 x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.csproj.GenerateResource.Cache
 x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.dll
 x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.pdb
+<<<<<<< HEAD
 X:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.csprojResolveAssemblyReference.cache
 C:\Users\Kirill\Documents\BoublikSystem-master\BoublikSystem\bin\BoublikSystem.dll.config
 C:\Users\Kirill\Documents\BoublikSystem-master\BoublikSystem\bin\BoublikSystem.dll
@@ -223,3 +167,5 @@ C:\Users\Kirill\Documents\GitHub\BoublikSystem\BoublikSystem\bin\Microsoft.Owin.
 C:\Users\Kirill\Documents\GitHub\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.dll
 C:\Users\Kirill\Documents\GitHub\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.pdb
 C:\Users\Kirill\Documents\GitHub\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.csprojResolveAssemblyReference.cache
+=======
+>>>>>>> c5401f725964dc6a8289cdadc9d096126bf479c8
