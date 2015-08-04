@@ -12,7 +12,8 @@ namespace BoublikSystem.Models
     {
         public IEnumerable<Product> Products { get; set; }
         public IEnumerable<SelectListItem> Address { get; set; }
-        [Required]
+        [Required (ErrorMessage = "Не выбрана точка доставки!")]
+
         public string SelectedAdress { get; set; }
     }
 }
