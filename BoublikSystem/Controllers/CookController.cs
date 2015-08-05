@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Configuration;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -15,18 +18,20 @@ namespace BoublikSystem.Controllers
     [Authorize(Roles = "admin, cook")]
     public class CookController : Controller
     {
-        private static ApplicationDbContext context = new ApplicationDbContext();// БД
+        private static ApplicationDbContext context = new ApplicationDbContext(); // БД
         private static List<Product> products; // список всей продукции
 
-         
+
         private static List<SelectListItem> adrressList;
-        private static Dictionary<Product, double> _billsList_view = new Dictionary<Product, double>(); // дабавлены продукты в накладную
+
+        private static Dictionary<Product, double> _billsList_view = new Dictionary<Product, double>();
+            // дабавлены продукты в накладную
 
         public CookController()
         {
             products = context.Products.ToList();
             adrressList = CreateAddresList(context.SalePoints.ToList());
-
+            
         }
 
         // GET: Cook
@@ -43,11 +48,11 @@ namespace BoublikSystem.Controllers
 
             ViewBag.IsError = false;
             ViewBag.Success = false;
-           
+
             return View(GetWayBillModel());
         }
 
-        
+
         [HttpPost]
         public ActionResult CreateWayBill(WayBillModel wayBillModel)
 
@@ -55,18 +60,18 @@ namespace BoublikSystem.Controllers
             ViewBag.DefaultSelected = "Выберите адрес доставки";
             ViewBag.SelectedItem = wayBillModel.SelectedAdress;
             ViewBag.BillsCount = _billsList_view.Count;
-            
-           if ((_billsList_view.Count > 0) && (wayBillModel.SelectedAdress != null))
+
+            if ((_billsList_view.Count > 0) && (wayBillModel.SelectedAdress != null))
             {
-                
+
                 // todo: add to bd and clean list
-                
-           
+
+
 
                 // Что бы получить id для WayBill нужно его добавить в ДБ, затем считать
                 int idSelectedAdress = Convert.ToInt32(wayBillModel.SelectedAdress);
                 int futureId = 0;
-                WayBill wayBill = new WayBill { SalesPointId = idSelectedAdress };
+                WayBill wayBill = new WayBill {SalesPointId = idSelectedAdress};
                 context.WayBills.Add(wayBill);
                 context.SaveChanges();
 
@@ -84,24 +89,24 @@ namespace BoublikSystem.Controllers
 
                 context.SaveChanges();
 
-                _billsList_view.Clear(); 
-               ViewBag.IsError = false;
+                _billsList_view.Clear();
+                ViewBag.IsError = false;
                 ViewBag.Success = true;
-                
+
             }
             else
-           {
-               ViewBag.Success = false;
+            {
+                ViewBag.Success = false;
                 ViewBag.IsError = true;
                 // todo: make some validation msg
             }
 
 
-             return View(GetWayBillModel());
+            return View(GetWayBillModel());
 
         }
-        
-        public ActionResult _AddProductToWayBill(int id=-1, double count = -1)
+
+        public ActionResult _AddProductToWayBill(int id = -1, double count = -1)
         {
             string checkForPoint;
 
@@ -129,21 +134,29 @@ namespace BoublikSystem.Controllers
             return PartialView(_billsList_view);
 
         }
+        /// <summary>
+        /// Удаление позиции в накладной
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult DeleteBillFromBillsList(int id)
+        {
+            var recivedProduct = context.Products.Find(id);
+            _billsList_view.Remove(recivedProduct);
+            _AddProductToWayBill();
+            return PartialView("_AddProductToWayBill");
+        }
 
-        
-
-        public ActionResult _MW_SelectCount(int id)
+    
+    
+public ActionResult _MW_SelectCount(int id)
         {
 
             return PartialView(id);
             //TODO: waybillid должно обьявляться только после нажатия кнопки "отправить"
         }
 
-        // GET: /cook/ShowProducts
-        public ActionResult ShowProducts()
-        {
-            return View();
-        }
+       
 
 
 
@@ -176,5 +189,61 @@ namespace BoublikSystem.Controllers
 
             return wayBillModel;
         }
+        #region ADD/Delete/EDIT PRODUCT
+        
+        // GET: /cook/ShowProducts
+        public ActionResult ShowProducts()
+        {
+            return View(products);
+        }
+      
+        
+        public ActionResult EditProduct(int id)
+        {
+            return View(products[id-1]);
+        }
+        //TODO: РАЗОБРАТЬСЯ С БД
+        [HttpPost]
+        public ActionResult EditProduct(Product prdct)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    context.Entry(prdct).State = EntityState.Modified;
+                    context.SaveChanges();
+                }
+                catch (DataException)
+                {
+                    ModelState.AddModelError("",                        "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                }
+            }
+            return RedirectToAction("ShowProducts");
+        }
+        public ActionResult AddNewProduct()
+        {
+           
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddNewProduct(Product prdct)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Products.Add(prdct);
+                context.SaveChanges();
+
+            }
+            return RedirectToAction("ShowProducts");
+        }
+
+
+        public ActionResult DeleteProduct()
+        {
+            return View();
+        }
+
+        #endregion
     }
 }

@@ -64,7 +64,7 @@
               else if ((ViewBag.BillsCount<=0)&&(IsPost))
             {
                 <div class="alert-danger" id="alertBL" style="-webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px">
-                    <strong>2Внимание!</strong> В накладной нет товаров, добавьте необходимые продукты из списка выше.
+                    <strong>Внимание!</strong> В накладной нет товаров, добавьте необходимые продукты из списка выше.
                 </div>
             }
 <!--информация для теста-->
@@ -93,6 +93,7 @@
                     </th>
                     <th>Количество
                     </th>
+                    <th></th>
                     <tbody id="selectedProducts">
                         <!--отображаем таблицу выбраных товаров если список выбранных товаров не пустой-->
                         @try

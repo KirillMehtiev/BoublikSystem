@@ -296,6 +296,9 @@
     <Content Include="Views\Cook\CreateWayBill.cshtml" />
     <Content Include="Views\Cook\_AddProductToWayBill.cshtml" />
     <Content Include="Views\Cook\_MW_SelectCount.cshtml" />
+    <Content Include="Views\Cook\EditProduct.cshtml" />
+    <Content Include="Views\Cook\AddNewProduct.cshtml" />
+    <Content Include="Views\Cook\DeleteProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

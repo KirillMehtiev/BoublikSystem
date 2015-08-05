@@ -1,0 +1,36 @@
+﻿@model BoublikSystem.Entities.Product
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit</title>
+    <h2>Редактирование продукта</h2>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("EditProduct", "Cook", FormMethod.Post))
+      {
+          Html.HiddenFor(m => m.Id);
+          <p>
+              @Html.LabelFor(m => m.Name, "Изменить название")
+                <br />
+              @Html.EditorFor(m => m.Name)
+          </p>
+        <p>
+            @Html.LabelFor(m => m.Price, "Изменить цену")
+              <br />
+            @Html.EditorFor(m => m.Price)
+        </p>
+          <p>
+              @Html.LabelFor(m => m.MeasurePoint,"Изменить меру измерения")
+                <br/>
+                @Html.EditorFor(m => m.MeasurePoint)
+          </p>
+
+          <p>
+              <input type="submit" value="Принять">
+          </p>
+
+        }
+    </div>
+</body>
+</html>
