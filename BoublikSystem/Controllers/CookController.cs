@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Linq;
 using System.Net;
@@ -16,6 +17,8 @@ namespace BoublikSystem.Controllers
     {
         private static ApplicationDbContext context = new ApplicationDbContext();// БД
         private static List<Product> products; // список всей продукции
+
+         
         private static List<SelectListItem> adrressList;
         private static Dictionary<Product, double> _billsList_view = new Dictionary<Product, double>(); // дабавленые продукты в накладную
 
@@ -37,24 +40,31 @@ namespace BoublikSystem.Controllers
         [HttpGet]
         public ActionResult CreateWayBill()
         {
-            
 
+            ViewBag.IsError = false;
+            ViewBag.Success = false;
+           
             return View(GetWayBillModel());
         }
 
-
+        
         [HttpPost]
         public ActionResult CreateWayBill(WayBillModel wayBillModel)
 
         {
-            if ((_billsList_view.Count > 0) && (wayBillModel.SelectedAdress != null))
+            ViewBag.DefaultSelected = "Выберите адрес доставки";
+            ViewBag.SelectedItem = wayBillModel.SelectedAdress;
+            ViewBag.BillsCount = _billsList_view.Count;
+            
+           if ((_billsList_view.Count > 0) && (wayBillModel.SelectedAdress != null))
             {
 <<<<<<< HEAD
 =======
-
+                
                 // todo: add to bd and clean list
                 
 >>>>>>> c5401f725964dc6a8289cdadc9d096126bf479c8
+           
 
                 // Что бы получить id для WayBill нужно его добавить в ДБ, затем считать
                 int idSelectedAdress = Convert.ToInt32(wayBillModel.SelectedAdress);
@@ -62,9 +72,8 @@ namespace BoublikSystem.Controllers
                 WayBill wayBill = new WayBill { SalesPointId = idSelectedAdress };
                 context.WayBills.Add(wayBill);
                 context.SaveChanges();
-                
-                foreach (var item in _billsList_view)
 
+                foreach (var item in _billsList_view)
                 {
                     ProductToWayBill productToWayBill = new ProductToWayBill
                     {
@@ -78,44 +87,53 @@ namespace BoublikSystem.Controllers
 
                 context.SaveChanges();
 
-                _billsList_view.Clear();
-
+                _billsList_view.Clear(); 
+               ViewBag.IsError = false;
+                ViewBag.Success = true;
                 
             }
             else
-            {
+           {
+               ViewBag.Success = false;
+                ViewBag.IsError = true;
                 // todo: make some validation msg
             }
 
 
-            return View(GetWayBillModel());
+             return View(GetWayBillModel());
 
         }
-
-        public ActionResult _AddProductToWayBill(int id, double count = -1)
+        
+        public ActionResult _AddProductToWayBill(int id=-1, double count = -1)
         {
             string checkForPoint;
 
-
-            checkForPoint = Request["countField"].ToString().Replace(".", ",");
-
-            count = Convert.ToDouble(checkForPoint);
-
-            var recivedProduct = context.Products.Find(id);
-
-            if ((_billsList_view.Count > 0) && (_billsList_view.ContainsKey(recivedProduct)))
+            try
             {
-                _billsList_view[recivedProduct] += count;
+                checkForPoint = Request["countField"].ToString().Replace(".", ",");
+
+                count = Convert.ToDouble(checkForPoint);
+
+                var recivedProduct = context.Products.Find(id);
+
+                if ((_billsList_view.Count > 0) && (_billsList_view.ContainsKey(recivedProduct)))
+                {
+                    _billsList_view[recivedProduct] += count;
+                }
+                else
+                {
+                    _billsList_view.Add(recivedProduct, count);
+                }
             }
-            else
+            catch
             {
-                _billsList_view.Add(recivedProduct, count);
             }
 
             return PartialView(_billsList_view);
 
         }
 
+        
 
         public ActionResult _MW_SelectCount(int id)
         {

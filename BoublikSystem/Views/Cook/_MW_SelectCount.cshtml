@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-п»ї@model int
+@using System.Web.UI.WebControls
 
 =======
 п»ї@using System.Activities.Validation
@@ -9,11 +9,13 @@
 @model int
 >>>>>>> c5401f725964dc6a8289cdadc9d096126bf479c8
 <div class="modal-content">
+
     <div class="modal-body">
 <<<<<<< HEAD
         <h3>Р’РІРµРґРёС‚Рµ РЅРµРѕР±С…РѕРґРёРјРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ</h3>
 
-        @using (Ajax.BeginForm("_AddProductToWayBill", "Cook", new { id = Model }, new AjaxOptions() { UpdateTargetId = "selectedProducts" }))
+        @using (Ajax.BeginForm("_AddProductToWayBill", "Cook", new {id = Model}, new AjaxOptions()
+        {UpdateTargetId = "selectedProducts", OnSuccess = "onSuccess"}))
         {
             <input type="text" class="form-control" id="countld" name="countField" value="">
             <input type="submit" id="applyId" value="Apply"  />
@@ -22,23 +24,33 @@
 =======
         <p>РќР°Р·РІР°РЅРёРµ РјРѕРґРµР»Рё: </p>
       
-        @using (Ajax.BeginForm("_AddProductToWayBill", "Cook", new { id = Model }, new AjaxOptions() { UpdateTargetId = "selectedProducts" }))
-        {
 
+        {
+            <input type="text" class="form-control" id="countfld" name="countField" value="" required pattern="[0-9/,/.]+"  >
 
             <label for="countfld">Р’РІРµРґРёС‚Рµ СЃСЋРґР° РєРѕР»РёС‡РµСЃС‚РІРѕ РєРі/С€С‚: for id = @Model</label>
-            <input type="text" class="form-control" id="countfld" name="countField" value="">
-            <input type="submit" id="applyId" value="РџСЂРёРЅСЏС‚СЊ"  />
+            <input type="submit" id="applyId" value="Принять"/>
+
+        }
+    </div>
+
+</div>
+<!--не нужно, так как скрипт ниже  делает проверку ввода-->
+@*<script type="text/javascript">  
+      $(function () {
+          $('#applyId').click(function () {
+              $('#modDialog').modal('hide');
+          });
+      })
+</script>*@
+<!--вешается на событие OnSuccess для аякс-формы. Скрывает модальное окно после подтверждения формы-->
+<script type="text/javascript"> 
+    
+        function onSuccess () {
+            $('#modDialog').modal('hide');
         }
 
-       </div>
->>>>>>> c5401f725964dc6a8289cdadc9d096126bf479c8
-    </div>
-<script type="text/javascript">
-    $(function() {
-        $('#applyId').click(function() {
-            $('#modDialog').modal('hide');
-        });
-    })
+        function onFailure() {
+            
+        }
 </script>
-

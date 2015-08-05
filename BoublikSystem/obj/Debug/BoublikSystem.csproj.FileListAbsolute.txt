@@ -54,6 +54,7 @@ x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.csp
 x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.dll
 x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.pdb
 <<<<<<< HEAD
+x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.csprojResolveAssemblyReference.cache
 X:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.csprojResolveAssemblyReference.cache
 C:\Users\Kirill\Documents\BoublikSystem-master\BoublikSystem\bin\BoublikSystem.dll.config
 C:\Users\Kirill\Documents\BoublikSystem-master\BoublikSystem\bin\BoublikSystem.dll
