@@ -1,0 +1,40 @@
+﻿@model BoublikSystem.Entities.Product
+
+  @{
+    ViewBag.Title = "AddNewProduct";
+}
+
+
+<body>
+    <div class="row">
+
+        <h2>Добавление нового продукта</h2>
+        
+        @using (Html.BeginForm())
+    {
+      
+        <p>
+            @Html.LabelFor(m => m.Name, "Название")
+            <br />
+            @Html.EditorFor(m => m.Name)
+@Html.ValidationMessageFor(m =>m.Name)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.Price, "Цена")
+            <br />
+            @Html.EditorFor(m => m.Price)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.MeasurePoint, "Мера измерения")
+            <br />
+            @Html.EditorFor(m => m.MeasurePoint)
+        </p>
+
+        <p>
+            <input type="submit" value="Добавить">
+        </p>
+
+        }
+    </div>
+</body>
+

@@ -20,8 +20,9 @@ namespace BoublikSystem.Migrations
         {
             AutomaticMigrationsEnabled = true;
             ContextKey = "BoublikSystem.Models.ApplicationDbContext";
+           
         }
-
+       
         protected override void Seed(BoublikSystem.Models.ApplicationDbContext context)
         {
 
@@ -31,7 +32,7 @@ namespace BoublikSystem.Migrations
                 var roleManager = new RoleManager<IdentityRole>(roleStore);
                 var userStore = new UserStore<ApplicationUser>(context);
                 var userManager = new UserManager<ApplicationUser>(userStore);
-
+                
                 var hasher = new PasswordHasher();
 
                 // Create list of users to add in db

@@ -15,5 +15,6 @@ namespace BoublikSystem.Models
         [Required (ErrorMessage = "Не выбрана точка доставки!")]
 
         public string SelectedAdress { get; set; }
+
     }
 }

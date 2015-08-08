@@ -1,0 +1,48 @@
+﻿@model BoublikSystem.Entities.Product
+
+@{
+    ViewBag.Title = "DeleteProduct";
+}
+
+<h2>Удалить продукт</h2>
+
+<h3>Вы уверены, что хотите удалить этот продукт?</h3>
+<div>
+    @*<h4>Product</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.LabelFor(model => model.Name, "Название")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.Price, "Цена")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.MeasurePoint, "Мера измерения")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeasurePoint)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Возврат к списку продуктов", "ShowProducts")
+        </div>
+    }
+</div>
