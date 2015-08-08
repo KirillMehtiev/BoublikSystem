@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Core.Metadata.Edm;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -21,19 +22,20 @@ namespace BoublikSystem.Controllers
         private static ApplicationDbContext context = new ApplicationDbContext(); // БД
         private static List<Product> products; // список всей продукции
 
-
+        
         private static List<SelectListItem> adrressList;
 
         private static Dictionary<Product, double> _billsList_view = new Dictionary<Product, double>();
-            // дабавлены продукты в накладную
+        // дабавлены продукты в накладную
 
         public CookController()
         {
             products = context.Products.ToList();
             adrressList = CreateAddresList(context.SalePoints.ToList());
-            
+
         }
 
+       
         // GET: Cook
         public ActionResult Index()
         {
@@ -55,7 +57,6 @@ namespace BoublikSystem.Controllers
 
         [HttpPost]
         public ActionResult CreateWayBill(WayBillModel wayBillModel)
-
         {
             ViewBag.DefaultSelected = "Выберите адрес доставки";
             ViewBag.SelectedItem = wayBillModel.SelectedAdress;
@@ -66,12 +67,12 @@ namespace BoublikSystem.Controllers
 
                 // todo: add to bd and clean list
 
-
-
+                
+                
                 // Что бы получить id для WayBill нужно его добавить в ДБ, затем считать
                 int idSelectedAdress = Convert.ToInt32(wayBillModel.SelectedAdress);
                 int futureId = 0;
-                WayBill wayBill = new WayBill {SalesPointId = idSelectedAdress};
+                WayBill wayBill = new WayBill { SalesPointId = idSelectedAdress };
                 context.WayBills.Add(wayBill);
                 context.SaveChanges();
 
@@ -147,16 +148,16 @@ namespace BoublikSystem.Controllers
             return PartialView("_AddProductToWayBill");
         }
 
-    
-    
-public ActionResult _MW_SelectCount(int id)
+
+
+        public ActionResult _MW_SelectCount(int id)
         {
 
             return PartialView(id);
             //TODO: waybillid должно обьявляться только после нажатия кнопки "отправить"
         }
 
-       
+
 
 
 
@@ -190,59 +191,133 @@ public ActionResult _MW_SelectCount(int id)
             return wayBillModel;
         }
         #region ADD/Delete/EDIT PRODUCT
-        
+
         // GET: /cook/ShowProducts
         public ActionResult ShowProducts()
         {
-            return View(products);
+            return View(context.Products.ToList());
         }
-      
-        
-        public ActionResult EditProduct(int id)
+
+
+        // GET: Product/Details/5
+        public ActionResult ProductDetails(int? id)
         {
-            return View(products[id-1]);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Product product = context.Products.Find(id);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            return View(product);
         }
-        //TODO: РАЗОБРАТЬСЯ С БД
+
+        // GET: Product/Create
+        public ActionResult CreateNewProduct()
+        {
+            return View();
+        }
+
+        // POST: Product/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult EditProduct(Product prdct)
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateNewProduct([Bind(Include = "Id,Name,Price,MeasurePoint")] Product product)
         {
             if (ModelState.IsValid)
             {
+                context.Products.Add(product);
+                context.SaveChanges();
+                return RedirectToAction("ShowProducts");
+            }
+
+            return View(product);
+        }
+
+        // GET: Product/Edit/5
+        public ActionResult EditProduct(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Product product = context.Products.Find(id);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            return View(product);
+        }
+
+        // POST: Product/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditProduct([Bind(Include = "Id,Name,Price,MeasurePoint")] Product prdct)
+        {
+            if (ModelState.IsValid)
+            {
+                //context.Entry(product).State = EntityState.Modified;
+                //context.SaveChanges();
+                //return RedirectToAction("ShowProducts");
+                var productToUpdate = context.Products.Find(prdct.Id);
                 try
                 {
-                    context.Entry(prdct).State = EntityState.Modified;
+                    context.Entry(productToUpdate).CurrentValues.SetValues(prdct);
                     context.SaveChanges();
+
+                    return RedirectToAction("ShowProducts");
                 }
-                catch (DataException)
+                catch (DataException  /*dex*/ )
                 {
-                    ModelState.AddModelError("",                        "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("",
+                        "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
                 }
+
             }
-            return RedirectToAction("ShowProducts");
-        }
-        public ActionResult AddNewProduct()
-        {
-           
-            return View();
+            return View(prdct);
         }
 
-        [HttpPost]
-        public ActionResult AddNewProduct(Product prdct)
+        // GET: Product/Delete/5
+        public ActionResult DeleteProduct(int? id)
         {
-            if (ModelState.IsValid)
+            if (id == null)
             {
-                context.Products.Add(prdct);
-                context.SaveChanges();
-
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            Product product = context.Products.Find(id);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            return View(product);
+        }
+
+        // POST: Product/Delete/5
+        [HttpPost, ActionName("DeleteProduct")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteProductConfirmed(int id)
+        {
+            Product product = context.Products.Find(id);
+            context.Products.Remove(product);
+            context.SaveChanges();
             return RedirectToAction("ShowProducts");
         }
 
-
-        public ActionResult DeleteProduct()
-        {
-            return View();
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        context.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
+        //TODO: РАЗОБРАТЬСЯ С БД
 
         #endregion
     }

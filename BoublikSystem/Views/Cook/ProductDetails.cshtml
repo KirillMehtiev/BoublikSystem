@@ -1,0 +1,42 @@
+﻿@model BoublikSystem.Entities.Product
+
+@{
+    ViewBag.Title = "ProductDetails";
+}
+
+<h2>Детали</h2>
+
+<div>
+    @*<h4>Product</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.LabelFor(model => model.Name,"Название")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.Price,"Цена")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.MeasurePoint,"Мера измерения")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeasurePoint)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Редактировать", "EditProduct", new { id = Model.Id }) |
+    @Html.ActionLink("Возврат к списку продуктов", "ShowProducts")
+</p>

@@ -1,47 +1,52 @@
 ﻿@model List<BoublikSystem.Entities.Product>
-@{
-    ViewBag.Title = "ShowProducts";
+@{    ViewBag.Title = "ShowProducts";
 }
 
+<h2>Список продуктов</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "CreateNewProduct")*@
+    @using (Html.BeginForm("CreateNewProduct", "Cook", FormMethod.Get))
+    {
+        <input type="submit" value="Новый продукт">
+    }
 
 
-<body>
-<div class="row">
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Name)*@
+            Название
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Price)*@
+            Цена
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.MeasurePoint)*@
+            Мера измерения
+        </th>
+        <th></th>
+    </tr>
 
-    <br/>
-<br/>
-    <div class="col-md-6">
-        @using (Html.BeginForm("AddNewProduct", "Cook", FormMethod.Get))
-             {
-                 <input type="submit" value="Новый продукт">
-             }
-        <h3>Cписок продуктов</h3>
-        <table class="table">
-            <tr>
-                <th>Название продукта
-                </th>
-                <th>Цена (грн.)
-                </th>
-                <th></th>
-            </tr>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MeasurePoint)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "EditProduct", new { id=item.Id }) |
+            @Html.ActionLink("Детали", "ProductDetails", new { id=item.Id }) |
+            @Html.ActionLink("Удалить", "DeleteProduct", new { id=item.Id })
+        </td>
+    </tr>
+}
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>@Html.DisplayFor(modelItem => item.Price)
-                    </td>
-                    <td>
-                        <div>
-                            @Html.ActionLink("Изменить", "EditProduct", new {id = item.Id}) |
-                            @Html.ActionLink("Удалить", "DeleteProduct", new {id = item.Id})
-                        </div>
-                    </td>
-                </tr>
-            }
-
-        </table>
-    </div>
-</div>
-</body>
+</table>

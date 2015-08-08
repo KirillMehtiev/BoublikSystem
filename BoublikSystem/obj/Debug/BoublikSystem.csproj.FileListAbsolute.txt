@@ -53,3 +53,5 @@ x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.Mig
 x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.csproj.GenerateResource.Cache
 x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.dll
 x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.pdb
+x:\Boublik\GitRepository\BoublikSystem\BoublikSystem\obj\Debug\BoublikSystem.csprojResolveAssemblyReference.cache
+X:\Boublik\GitRepository\BoublikSystem\BoublikSystem\bin\BoublikSystem.dll.config
