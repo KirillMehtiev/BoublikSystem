@@ -1,13 +1,13 @@
-﻿@using System;
-@model IDictionary<BoublikSystem.Entities.Product,double>
+﻿@model IDictionary<BoublikSystem.Entities.Product,double>
 
-@foreach ( var product in Model)
-{
-    <tr>
-
-        <td>@Html.DisplayFor(m => product.Key.Name)</td>
-        <td>@Html.DisplayFor(m => product.Key.Price)</td>
-        <td>@Html.DisplayFor(m =>product.Value) 
- @Html.DisplayFor(m => product.Key.MeasurePoint)</td>
-    </tr>
-}
+@foreach (var product in Model)
+ {
+     <tr>
+         <td>@Html.DisplayFor(m => product.Key.Name)</td>
+         <td>@Math.Round((product.Key.Price*(decimal) product.Value), 2)</td>
+         <td>
+             @Html.DisplayFor(m => product.Value)
+             @Html.DisplayFor(m => product.Key.MeasurePoint)
+         </td>
+     </tr>
+ }

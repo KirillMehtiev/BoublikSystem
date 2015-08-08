@@ -18,6 +18,8 @@ namespace BoublikSystem.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public int SallerLocation { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -36,6 +38,8 @@ namespace BoublikSystem.Models
         public DbSet<SalePoint> SalePoints { get; set; }
         public DbSet<ProductToWayBill> ProductToWayBills { get; set; }
         public DbSet<WayBill> WayBills { get; set; }
+        public DbSet<ProductToBill> ProductToBills { get; set; }
+        public DbSet<Bill> Bills { get; set; }
 
         //public System.Data.Entity.DbSet<BoublikSystem.Models.ApplicationUser> ApplicationUsers { get; set; }
     }

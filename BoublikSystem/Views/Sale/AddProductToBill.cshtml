@@ -1,0 +1,10 @@
+﻿@model IDictionary<BoublikSystem.Entities.Product, double>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@item.Key.Name</td>
+        <td>@(Math.Round((item.Key.Price * (decimal)item.Value), 2))</td>
+        <td>@item.Value @item.Key.MeasurePoint</td>
+    </tr>
+}

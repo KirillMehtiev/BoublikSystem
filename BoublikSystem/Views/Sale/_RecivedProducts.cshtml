@@ -1,0 +1,16 @@
+﻿
+@model IDictionary<BoublikSystem.Entities.Product, double>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.Key.Name)</td>
+        <td>@Html.DisplayFor(modelItem => item.Key.Price)</td>
+        <td id="@string.Format("{0}{1}","update",item.Key.Id)">@(string.Format("{0} {1}", item.Value, item.Key.MeasurePoint))</td>
+        <td>
+            @Html.ActionLink("Добавить", "AskForCount", "Sale",
+                        new { productId = item.Key.Id },
+                        new { @class = "compItem" })
+        </td>
+    </tr>
+}

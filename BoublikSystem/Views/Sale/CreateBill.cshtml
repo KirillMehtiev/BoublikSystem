@@ -1,0 +1,84 @@
+﻿@model IDictionary<BoublikSystem.Entities.Product, double>
+
+@{
+    ViewBag.Title = "CreateBill";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Список полученных товаров</h2>
+
+            <table class="table">
+                <tr>
+                    <th>
+                        Название продукта
+                    </th>
+                    <th>
+                        Цена (грн.)
+                    </th>
+                    <th>
+                        Количество
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+
+                <tbody id="selectedProducts2">
+                    @{ Html.RenderPartial("_RecivedProducts", Model); }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Формирования чека</h2>
+            <table class="table">
+                <tr>
+                    <th>
+                        Название продукта
+                    </th>
+                    <th>
+                        Цена (грн.)
+                    </th>
+                    <th>
+                        Количество
+                    </th>
+                    <th>
+                    </th>
+
+                </tr>
+                <tbody id="selectedProducts"></tbody>
+            </table>
+
+        </div>
+    </div>
+    <div id="modDialog" class="modal fade">
+        <div id="dialogContent" class="modal-dialog"></div>
+    </div>
+
+</div>
+
+
+
+@*Ненавязивый JavaScript для выполнения запроса на сервер без полного обновления страницы*@
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+
+<script type="text/javascript">
+
+    $(function () {
+        $.ajaxSetup({ cache: false });
+        $(".compItem").click(function (e) {
+
+            e.preventDefault();
+            $.get(this.href, function (data) {
+                $('#dialogContent').html(data);
+                $('#modDialog').modal('show');
+            });
+        });
+
+    });
+
+</script>

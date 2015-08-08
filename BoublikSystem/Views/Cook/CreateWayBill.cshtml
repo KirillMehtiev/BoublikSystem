@@ -1,18 +1,9 @@
-﻿@using BoublikSystem.Entities
+﻿@using Microsoft.Owin.BuilderProperties
 @model BoublikSystem.Models.WayBillModel
 
 @{
     ViewBag.Title = "CreateWayBill";
-   
-    var options = new AjaxOptions()
-    {
-        UpdateTargetId = "selectedProducts",
-        Url = Url.Action("_AddProductToWayBill")
-    };
 }
-
-@*<h2>CreateWayBill</h2>
-*@
 
 <div class="container">
     <div class="row">
@@ -34,9 +25,12 @@
                         </td>
                         <td>@Html.DisplayFor(modelItem => item.Price)
                         </td>
-                        <td>@Ajax.ActionLink("Добавить", "_AddProductToWayBill", new{id = item.Id,count = 4}, new AjaxOptions {
-                                UpdateTargetId = "selectedProducts"
-                })
+                        <td>
+                            <div>
+                                @Html.ActionLink("Добавить", "_MW_SelectCount",
+                new { id = item.Id }, new { @class = "compItem" })
+
+                            </div>
                         </td>
                     </tr>
                 }
@@ -47,6 +41,43 @@
     <div class="row">
         <div class="col-md-6">
             <h2>Формирование накладной</h2>
+            <!-- проверка есть ли элементы в адресе?-->
+
+             @if ((@ViewBag.Success)&&( @ViewBag.SelectedItem!=null)&&(IsPost))
+                    {<div class="alert-success" id="alertBL" style="-webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px">
+                        Накладная <strong>успешно</strong> отправлена!
+                    </div>
+            }
+            @if ((ViewBag.SelectedItem!=null)&&(ViewBag.IsError)&&(IsPost))
+            {
+                <div class="alert-danger" id="alertBL" style="-webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px">
+                    <strong>Внимание!</strong> В накладной нет товаров, добавьте необходимые продукты из списка выше.
+                </div>
+            }
+              else if ((ViewBag.BillsCount<=0)&&(IsPost))
+            {
+                <div class="alert-danger" id="alertBL" style="-webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px">
+                    <strong>2Внимание!</strong> В накладной нет товаров, добавьте необходимые продукты из списка выше.
+                </div>
+            }
+<!--информация для теста-->
+@*            <hr />
+            <br />
+            Address: @Model.Address.Any()<br />
+            IsPost: @IsPost<br />
+            IsError: @ViewBag.IsError<br/>
+            SelectedItem: @ViewBag.SelectedItem
+            @foreach (var item in Model.Address)
+           {<p>456</p>
+            <p>@item.Disabled</p>
+            <p>@item.Group</p>
+            <p>@item.Selected</p>
+            <p>@item.Text</p>
+            <p>@item.Value</p>
+            <hr/>
+            }
+          <br />
+            <hr />*@
             <table class="table">
                 <tr>
                     <th>Название продукта
@@ -56,9 +87,19 @@
                     <th>Количество
                     </th>
                     <tbody id="selectedProducts">
-                      
+                        <!--отображаем таблицу выбраных товаров если список выбранных товаров не пустой-->
+                        @try
+                        {
+                            @Html.Action("_AddProductToWayBill", "Cook")
+                        }
+                        catch
+                        {
+                        }
+
+
                     </tbody>
                 </tr>
+                <tbody id="selectedProducts"></tbody>
             </table>
 
             @using (Html.BeginForm())
@@ -66,24 +107,50 @@
                 @Html.AntiForgeryToken()
 
                 <div class="form-horizontal">
+                    <div class="col-md-6 pull-left">
+                        @Html.DropDownListFor(m => m.SelectedAdress, new  SelectList(Model.Address, "Value", "Text"), "Выберите адрес доставки", new { @class = "form-control" })
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.CreatedWayBill.SalesPointId, htmlAttributes: new { @class = "control-label col-md-6" })
-                        <div class="col-md-6">
-                            @Html.DropDownListFor(m => m.CreatedWayBill.SalesPointId, new SelectList(Model.Address, "Value", "Text"), "  Выберите адрес доставки  ", new { @class = "form-control" })
-                        </div>
+                        <p style="color: #b94a48; background-color: #f2dede; border-color: #eed3d7; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px">
+                            <strong>@Html.ValidationMessageFor(model => model.SelectedAdress)</strong>
+                        </p>
                     </div>
                 </div>
             <div class="form-group">
-                <input type="submit" value="Отправить накладную" class="btn btn-default" />
+
+                <input type="submit" id="AcceptBLBtn" value="Отправить накладную" class="btn btn-default" onclick="return confirm('Подтвердить отправку?')" />
+
             </div>
             }
         </div>
     </div>
+    <div id="modDialog" class="modal fade">
+        <div id="dialogContent" class="modal-dialog"></div>
+    </div>
 </div>
 
-@section scripts
-{
-    @*Ненавязивый JavaScript для выполнения запроса на сервер без полного обновления страницы*@
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-}
+@*Ненавязчивый JavaScript для выполнения запроса на сервер без полного обновления страницы*@
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+        $.ajaxSetup({ cache: false });
+        $(".compItem").click(function (e) {
+
+            e.preventDefault();
+            $.get(this.href, function (data) {
+                $('#dialogContent').html(data);
+                $('#modDialog').modal('show');
+            });
+        });
+
+    });
+</script>
+
+@*<script type="text/javascript">
+    $(function () {
+        $("#AcceptBLBtn").click(function () {
+            confirm("Realy?");
+        });
+    });
+</script>*@
