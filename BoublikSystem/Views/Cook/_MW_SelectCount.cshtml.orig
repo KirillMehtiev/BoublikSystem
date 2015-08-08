@@ -1,31 +1,71 @@
+<<<<<<< HEAD
+﻿@model int
+
+=======
 ﻿@using System.Activities.Validation
+@using System.Web.UI.WebControls
 @using BoublikSystem.Entities
 @*model IDictionary<BoublikSystem.Entities.Product,BoublikSystem.Entities.ProductToWayBill>*@
 @*model IEnumerable<BoublikSystem.Entities.ProductToWayBill>*@
 @model int
+>>>>>>> c5401f725964dc6a8289cdadc9d096126bf479c8
 <div class="modal-content">
+<<<<<<< HEAD
+=======
     <div class="modal-header">
         <h4 class="modal-title">Modal Header</h4>
     </div>
+
+>>>>>>> bec2007ac24b50c2abab3cde67cea70fd55cd678
     <div class="modal-body">
-        <p>Название модели: </p>
-      
+<<<<<<< HEAD
+        <h3>Введите необходимое количество</h3>
+
         @using (Ajax.BeginForm("_AddProductToWayBill", "Cook", new { id = Model }, new AjaxOptions() { UpdateTargetId = "selectedProducts" }))
+        {
+            <input type="text" class="form-control" id="countld" name="countField" value="">
+            <input type="submit" id="applyId" value="Apply"  />
+        }
+
+=======
+        <p>Название модели: </p>
+
+        @using (Ajax.BeginForm("_AddProductToWayBill", "Cook", new {id = Model}, new AjaxOptions()
+        {UpdateTargetId = "selectedProducts", OnSuccess = "onSuccess"}))
         {
 
 
+
             <label for="countfld">Введите сюда количество кг/шт: for id = @Model</label>
-            <input type="text" class="form-control" id="countfld" name="countField" value="">
-            <input type="submit" id="applyId" value="Принять"  />
+            <input type="text" class="form-control" id="countfld" name="countField" value="" required pattern="[0-9/,/.]+"  >
+
+            <input type="submit" id="applyId" value="Принять"/>
+
+<<<<<<< HEAD
+       </div>
+>>>>>>> c5401f725964dc6a8289cdadc9d096126bf479c8
+=======
+        }
+>>>>>>> bec2007ac24b50c2abab3cde67cea70fd55cd678
+    </div>
+
+</div>
+<!--не нужно, так как скрипт ниже  делает проверку ввода-->
+@*<script type="text/javascript">  
+      $(function () {
+          $('#applyId').click(function () {
+              $('#modDialog').modal('hide');
+          });
+      })
+</script>*@
+<!--вешается на событие OnSuccess для аякс-формы. Скрывает модальное окно после подтверждения формы-->
+<script type="text/javascript"> 
+    
+        function onSuccess () {
+            $('#modDialog').modal('hide');
         }
 
-       </div>
-    </div>
-<script type="text/javascript">
-    $(function() {
-        $('#applyId').click(function() {
-            $('#modDialog').modal('hide');
-        });
-    })
+        function onFailure() {
+            
+        }
 </script>
-

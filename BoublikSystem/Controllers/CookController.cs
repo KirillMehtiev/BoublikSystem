@@ -58,13 +58,6 @@ namespace BoublikSystem.Controllers
             
            if ((_billsList_view.Count > 0) && (wayBillModel.SelectedAdress != null))
             {
-<<<<<<< HEAD
-=======
-                
-                // todo: add to bd and clean list
-                
->>>>>>> c5401f725964dc6a8289cdadc9d096126bf479c8
-           
 
                 // Что бы получить id для WayBill нужно его добавить в ДБ, затем считать
                 int idSelectedAdress = Convert.ToInt32(wayBillModel.SelectedAdress);

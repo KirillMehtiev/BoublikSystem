@@ -1,37 +1,25 @@
-<<<<<<< HEAD
 @using System.Web.UI.WebControls
 
-=======
-п»ї@using System.Activities.Validation
+@using System.Activities.Validation
 @using BoublikSystem.Entities
 @*model IDictionary<BoublikSystem.Entities.Product,BoublikSystem.Entities.ProductToWayBill>*@
 @*model IEnumerable<BoublikSystem.Entities.ProductToWayBill>*@
 @model int
->>>>>>> c5401f725964dc6a8289cdadc9d096126bf479c8
 <div class="modal-content">
 
     <div class="modal-body">
-<<<<<<< HEAD
-        <h3>Р’РІРµРґРёС‚Рµ РЅРµРѕР±С…РѕРґРёРјРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ</h3>
+        <h3>>Введите необходимое количество</h3>
 
-        @using (Ajax.BeginForm("_AddProductToWayBill", "Cook", new {id = Model}, new AjaxOptions()
-        {UpdateTargetId = "selectedProducts", OnSuccess = "onSuccess"}))
+        @using (Ajax.BeginForm("_AddProductToWayBill", "Cook", new { id = Model }, new AjaxOptions() { UpdateTargetId = "selectedProducts", OnSuccess = "onSuccess" }))
         {
-            <input type="text" class="form-control" id="countld" name="countField" value="">
-            <input type="submit" id="applyId" value="Apply"  />
+
+            <input type="text" class="form-control" id="countfld" name="countField" value="" required pattern="[0-9/,/.]+">
+
+            <label for="countfld"></label>
+            <input type="submit" id="applyId" value="Принять" />
         }
 
-=======
-        <p>РќР°Р·РІР°РЅРёРµ РјРѕРґРµР»Рё: </p>
-      
-
-        {
-            <input type="text" class="form-control" id="countfld" name="countField" value="" required pattern="[0-9/,/.]+"  >
-
-            <label for="countfld">Р’РІРµРґРёС‚Рµ СЃСЋРґР° РєРѕР»РёС‡РµСЃС‚РІРѕ РєРі/С€С‚: for id = @Model</label>
-            <input type="submit" id="applyId" value="Принять"/>
-
-        }
+        <p>Название модели: </p>
     </div>
 
 </div>
