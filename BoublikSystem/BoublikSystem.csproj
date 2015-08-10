@@ -299,19 +299,16 @@
     <Content Include="Views\Cook\CreateWayBill.cshtml" />
     <Content Include="Views\Cook\_AddProductToWayBill.cshtml" />
     <Content Include="Views\Cook\_MW_SelectCount.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Sale\CreateBill.cshtml" />
     <Content Include="Views\Sale\AskForCount.cshtml" />
     <Content Include="Views\Sale\AddProductToBill.cshtml" />
     <Content Include="Views\Sale\_RecivedProducts.cshtml" />
     <Content Include="Views\Sale\_ChangeCountProduct.cshtml" />
-=======
     <Content Include="Views\Cook\CreateNewProduct.cshtml" />
     <Content Include="Views\Cook\DeleteProduct.cshtml" />
     <Content Include="Views\Cook\ProductDetails.cshtml" />
     <Content Include="Views\Cook\EditProduct.cshtml" />
     <Content Include="Views\Cook\ShowProducts.cshtml" />
->>>>>>> 97edbb5fa720f314ebfb520cbb38575c6d259f68
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

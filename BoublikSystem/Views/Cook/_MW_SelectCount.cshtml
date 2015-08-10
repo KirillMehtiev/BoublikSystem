@@ -8,7 +8,7 @@
 <div class="modal-content">
 
     <div class="modal-body">
-        <h3>>Введите необходимое количество</h3>
+        <h3>Введите необходимое количество</h3>
 
         @using (Ajax.BeginForm("_AddProductToWayBill", "Cook", new { id = Model }, new AjaxOptions() { UpdateTargetId = "selectedProducts", OnSuccess = "onSuccess" }))
         {
